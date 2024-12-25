@@ -3,10 +3,12 @@ import DialogOne from '../dialog/DialogOne';
 import { useDialog } from '../context/DialogContext';
 import { Link } from 'react-router-dom';
 import DialogTwo from '../dialog/DialogTwo';
+import { useSDialog } from '../context/Setting_dialgue';
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const { openDialog } = useDialog();
+  const {opensDialog} = useSDialog();
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
@@ -22,7 +24,7 @@ const Navbar = () => {
           <button onClick={openDialog} className="nav-items"><i class='bx bx-search-alt' ></i><span className="n-icon-text">Search</span></button>
           <button className="nav-items"><i class='bx bxs-notification' ></i><span className="n-icon-text">Notifications</span></button>
           <button className="nav-items"><i class='bx bxs-bookmark-star' ></i><span className="n-icon-text">Favorites</span></button>
-          <button className="nav-items"  ><i class='bx bx-cog'></i><span className='n-icon-text'>Settings</span></button>
+          <button className="nav-items" onClick={opensDialog}  ><i class='bx bx-cog'></i><span className='n-icon-text'>Settings</span></button>
           <li className="nav-items-plane">About us</li>
         </ul>
         <button onClick={toggleSidebar} className="nav-toggle">
@@ -49,6 +51,7 @@ const Navbar = () => {
         </ul>
       </aside>
       <DialogOne />
+      <DialogTwo/>
     </div>
   )
 }

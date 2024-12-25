@@ -1,23 +1,23 @@
-import { useDialog } from '../context/DialogContext';
+import { useSDialog } from "../context/Setting_dialgue";
 
 const DialogTwo = () => {
-    const { isOpen, closeDialog } = useDialog();
+    const { issOpen, closesDialog } = useSDialog();
 
     const handleOutsideClick = (e) => {
         if (e.target.id === 'dialog-overlay-s') {
-            closeDialog();
+            closesDialog();
         }
     };
 
     return (
-        isOpen && (
+        issOpen && (
             <div id="dialog-overlay-s" onClick={handleOutsideClick}>
-                <div id="dialog-box">
-                    <div id="dialog-header">
+                <div id="dialog-box-s">
+                    <div id="dialog-header-s">
                         <h2>Dialog Box</h2>
-                        <button onClick={closeDialog}>X</button>
+                        <button onClick={closesDialog}>X</button>
                     </div>
-                    <div id="dialog-content">
+                    <div id="dialog-content-s">
                         <p>Dialog content goes here</p>
                     </div>
                 </div>

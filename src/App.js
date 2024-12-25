@@ -7,6 +7,7 @@ import CoinDetails from './components/CoinDetails';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DialogOne from './dialog/DialogOne';
 import SearchResults from './content/SearchResults';
+import { SettingDialogProvider } from './context/Setting_dialgue';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -14,17 +15,19 @@ const App = () => {
   return (
     <Router>
       <DialogProvider>
-        <Navbar />
-        <DialogOne setSearchQuery={setSearchQuery} />
+        <SettingDialogProvider>
+          <Navbar />
+          <DialogOne setSearchQuery={setSearchQuery} />
 
-        <Routes>
-          <Route
-            path="/search"
-            element={<SearchResults searchQuery={searchQuery} />}
-          />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/coin/:id" element={<CoinDetails />} />
-        </Routes>
+          <Routes>
+            <Route
+              path="/search"
+              element={<SearchResults searchQuery={searchQuery} />}
+            />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/coin/:id" element={<CoinDetails />} />
+          </Routes>
+        </SettingDialogProvider>
       </DialogProvider>
     </Router>
   );
