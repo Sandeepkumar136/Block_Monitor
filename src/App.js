@@ -11,6 +11,7 @@ import { SdialogProvider } from './context/SdialogContext';
 import { DarkModeProvider } from './context/DarkModeContext';
 import { CurrencyProvider } from './context/CurrencyContext';
 import CoinCompare from './components/CoinCompare';
+import News from './components/News';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
@@ -34,6 +35,7 @@ const App = () => {
             {/* Homepage route */}
             <Route path="/" element={<HomePage />} />
             <Route path="/coincompare" element={<CoinCompare />} />
+            <Route path="/news" element={<News />} />
             {/* Dynamic coin details route */}
             <Route path="/coin/:id" element={<CoinDetails />} />
             {/* Fallback route for 404 */}

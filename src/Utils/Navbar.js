@@ -22,7 +22,6 @@ const Navbar = () => {
         </Link>
         <ul className="nav-list">
           <button onClick={openDialog} className="nav-items"><i className='bx bx-search-alt' ></i><span className="n-icon-text">Search</span></button>
-          <button className="nav-items"><i className='bx bxs-notification' ></i><span className="n-icon-text">Notifications</span></button>
           <button className="nav-items"><i className='bx bxs-bookmark-star' ></i><span className="n-icon-text">Favorites</span></button>
           <button className="nav-items" onClick={openSetting} ><i className='bx bx-cog'></i><span className='n-icon-text'>Settings</span></button>
           <li className="nav-items-plane">About us</li>
@@ -32,22 +31,22 @@ const Navbar = () => {
         </button>
       </nav>
       <aside className={showSidebar ? "sidebar active" : "sidebar"}>
-        <div className="sidebar-header">
+        <Link to="/" onClick={toggleSidebar} className="sidebar-header">
           <h2 className="sidebar-title">Block monitor</h2>
-          <i onClick={toggleSidebar} className='bx bx-x'></i>
-        </div>
+          <i  className='bx bx-x'></i>
+        </Link>
         <ul className="sidebar-list">
-          <li className="sidebar-items">Cryptocurrency List</li>
-          <Link to="/coincompare" className="sidebar-items">Compare Coins</Link>
-          <li className="sidebar-items">News and Market Trends</li>
-          <li className="sidebar-items">About us</li>
+          <li className="sidebar-items">Top Trending</li>
+          <li className="sidebar-items">Top Performer</li>
+          <Link onClick={toggleSidebar} to="/coincompare" className="sidebar-items">Compare Coins</Link>
+          <Link onClick={toggleSidebar} to="/news" className="sidebar-items">News and Market Trends</Link>
+          <li onClick={toggleSidebar} className="sidebar-items">About us</li>
 
         </ul>
         <ul className="sidebar-bottom-items">
-          <button><i className='bx bx-search-alt' ></i></button>
-          <button><i className='bx bxs-notification' ></i></button>
-          <button><i className='bx bxs-bookmark-star' ></i></button>
-          <button><i className='bx bx-cog'></i></button>
+          <button onClick={()=> {openDialog(); toggleSidebar();}} ><i className='bx bx-search-alt' ></i></button>
+          <button onClick={toggleSidebar} ><i className='bx bxs-bookmark-star' ></i></button>
+          <button onClick={()=> {openSetting(); toggleSidebar();}} ><i className='bx bx-cog'></i></button>
         </ul>
       </aside>
       <DialogOne />

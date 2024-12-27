@@ -223,9 +223,22 @@ body {
   flex-direction: column;
   width: 100%;
   height: 40vh;
-  background: linear-gradient(45deg, rgba(100, 175, 255, 0.6705882353), rgba(223, 118, 255, 0.5411764706), rgba(255, 99, 169, 0.6235294118));
+  background: linear-gradient(45deg, #9099ff, rgba(100, 175, 255, 0.6705882353), rgba(223, 118, 255, 0.5411764706), rgba(255, 99, 169, 0.6235294118), #ffa9a9);
+  animation: gradient 15s ease infinite;
+  -webkit-animation: gradient 15s ease infinite;
 }
 
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 .h-heading {
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
