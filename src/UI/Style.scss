@@ -413,130 +413,203 @@ body {
 }
 // Path: src/dialog/DialogOne.js
 #dialog-overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
-    z-index: 1000;
-    animation: fadeIn 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+  -webkit-animation: fadeIn 0.3s ease-in-out;
 }
 
 #dialog-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 400px;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.57);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(14.3px);
-    -webkit-backdrop-filter: blur(14.3px);
-    border: 1px solid rgba(255, 255, 255, 0.09);
-    gap: 0.5rem;
-    animation: slideIn 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.57);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(14.3px);
+  -webkit-backdrop-filter: blur(14.3px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  gap: 0.5rem;
+  animation: slideIn 0.3s ease-in-out;
+  -webkit-animation: slideIn 0.3s ease-in-out;
 }
 
 #dialog-header {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 0.1px solid #999;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.1px solid #999;
 }
 
 #dialog-header h2 {
-    font-family: "Poppins", sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #333;
-    padding: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #333;
+  padding: 0.5rem;
 }
 
 #dialog-header button {
-    font-size: 1.5rem;
-    color: #333;
-    cursor: pointer;
-    padding: 0.5rem;
-    border: none;
-    font-weight: 700;
-    outline: none;
-    background-color: transparent;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: none;
+  font-weight: 700;
+  outline: none;
+  background-color: transparent;
 }
 
 #dialog-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1rem;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
 }
 
 #dialog-content form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 #dialog-content form input {
-    padding: 0.5rem 1rem;
-    outline: none;
-    border: none;
-    background-color: #2e70ff;
-    font-size: 1rem;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    color: #fff;
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: none;
+  background-color: #2e70ff;
+  font-size: 1rem;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  color: #fff;
 }
 
 #dialog-content form input::placeholder {
-    color: #f9f9f9;
+  color: #f9f9f9;
 }
 
 #dialog-content form button {
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    background-color: #d334ff;
-    padding: 0.5rem 1rem;
-    color: #fff;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background-color: #d334ff;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideIn {
-    from {
-        transform: translateY(-20%);
-    }
-    to {
-        transform: translateY(0);
-    }
+  from {
+    transform: translateY(-20%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.setting-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.2px);
+  -webkit-backdrop-filter: blur(3.2px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+
+}
+.setting-box {
+  width: 800px;
+  height: 50vh;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation: slideIn 0.3s ease-in-out;
+  -webkit-animation: slideIn 0.3s ease-in-out;
+}
+.s-heading{
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+.setting-items{
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  list-style-type: none;
+  width: 50%;
+  gap: 1rem;
+}
+.setting-list{
+  display: flex;
+  padding: 0.5rem 0.2rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.setting-list .left-setting{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: #000;
+  text-transform: capitalize  ;
+}
+.left-setting i{
+  color: #007bff;
+  font-size: 1.5rem;
+}
+.right-setting{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
