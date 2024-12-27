@@ -7,7 +7,10 @@ import CoinDetails from './components/CoinDetails';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DialogOne from './dialog/DialogOne';
 import SearchResults from './content/SearchResults';
-import { SdialogProvider } from './context/Sdialog';
+import { SdialogProvider } from './context/SdialogContext';
+import { DarkModeProvider } from './context/DarkModeContext';
+import { CurrencyProvider } from './context/CurrencyContext';
+import CoinCompare from './components/CoinCompare';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
@@ -16,6 +19,8 @@ const App = () => {
     <Router>
       <DialogProvider>
         <SdialogProvider>
+          <DarkModeProvider>
+            <CurrencyProvider>
           <Navbar />
           {/* DialogOne with search query management */}
           <DialogOne setSearchQuery={setSearchQuery} />
@@ -28,11 +33,14 @@ const App = () => {
             />
             {/* Homepage route */}
             <Route path="/" element={<HomePage />} />
+            <Route path="/coincompare" element={<CoinCompare />} />
             {/* Dynamic coin details route */}
             <Route path="/coin/:id" element={<CoinDetails />} />
             {/* Fallback route for 404 */}
             <Route path="*" element={<div>404 - Page Not Found</div>} />
           </Routes>
+          </CurrencyProvider>
+          </DarkModeProvider>
         </SdialogProvider>
       </DialogProvider>
     </Router>

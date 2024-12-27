@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCurrency } from '../context/CurrencyContext';
 
 const HomePage = () => {
-    const [coins, setCoins] = useState([]);
+    const { currency, getCurrencySymbol} = useCurrency();    const [coins, setCoins] = useState([]);
     const [trendingCoins, setTrendingCoins] = useState([]);
     const [topPerformers, setTopPerformers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -17,7 +18,7 @@ const HomePage = () => {
                 "https://api.coingecko.com/api/v3/coins/markets",
                 {
                     params: {
-                        vs_currency: "usd",
+                        vs_currency: currency,  // Use the currency from context
                         order: "market_cap_desc",
                         per_page: 100,
                         page: 1,
@@ -41,9 +42,10 @@ const HomePage = () => {
         }
     };
 
+    // Fetch data whenever `currency` changes
     useEffect(() => {
         fetchMarketData();
-    }, []);
+    }, [currency]); // Add `currency` here to re-fetch when currency changes
 
     const handleViewDetails = (coinId) => {
         navigate(`/coin/${coinId}`);
@@ -69,7 +71,7 @@ const HomePage = () => {
                         <div key={coin.id} className="h-sub-card">
                             <img className='h-sub-img' src={coin.image} alt={coin.name} />
                             <h4>{coin.name}</h4>
-                            <p>Price: ${coin.current_price}</p>
+                            <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                             <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
                             <p className='cps' style={{background: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}`}}>Price Change: {coin.price_change_percentage_24h.toFixed(2)}%</p>
                             <button onClick={() => handleViewDetails(coin.id)}>View Details</button>
@@ -84,8 +86,8 @@ const HomePage = () => {
                         <div key={coin.id} className="h-sub-card">
                             <img className='h-sub-img' src={coin.image} alt={coin.name} />
                             <h4>{coin.name}</h4>
-                            <p>Price: ${coin.current_price}</p>
-                            <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
+                            <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
+                            <p>Market Cap: {getCurrencySymbol(currency)} {coin.market_cap.toLocaleString()}</p>
                             <p className='cps' style={{background: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}`}} >Price Change: {coin.price_change_percentage_24h.toFixed(2)}%</p>
                             <button onClick={() => handleViewDetails(coin.id)}>View Details</button>
                         </div>
@@ -100,7 +102,7 @@ const HomePage = () => {
                             <div key={coin.id} className="h-sub-card">
                                 <img className='h-sub-img' src={coin.image} alt={coin.name} />
                                 <h4>{coin.name}</h4>
-                                <p>Price: ${coin.current_price}</p>
+                                <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                                 <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
                                 <p className='cps' style={{background: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}`}} >Price Change: {coin.price_change_percentage_24h.toFixed(2)}%</p>
                                 <button onClick={() => handleViewDetails(coin.id)}>View Details</button>

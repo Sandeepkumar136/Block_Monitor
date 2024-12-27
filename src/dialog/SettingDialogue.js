@@ -1,58 +1,93 @@
 import React, { useState } from "react";
-import { useSetting } from "../context/Sdialog";
+import { useSetting } from "../context/SdialogContext";
 import ReactSwitch from "react-switch";
+import { useDarkMode } from "../context/DarkModeContext";
+import { useCurrency } from "../context/CurrencyContext";
 
 const SettingDialogue = () => {
   const { isSettingOpen, closeSetting } = useSetting();
-  const [isToggled, setIsToggled] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
+  const {currency, changeCurrency, currencyOptions} = useCurrency();
 
-  const handleToggle = (checked) => {
-    setIsToggled(checked);
-  }
+  const [alertsEnabled, setAlertsEnabled] = useState(false);
+  const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
+  // Close dialog when clicking outside
   const handleOutsideClickSetting = (e) => {
     if (e.target.id === "setting-overlay") {
-      closeSetting(); // Close the dialog when clicking outside
+      closeSetting();
     }
   };
 
   return (
-    isSettingOpen && ( // Corrected to use `isSettingOpen`
+    isSettingOpen && (
       <div id="setting-overlay" className="setting-overlay" onClick={handleOutsideClickSetting}>
         <div className="setting-box">
-          <h4 className="s-heading">Setttings</h4>
+          <h4 className="s-heading">Settings</h4>
           <ul className="setting-items">
+            {/* Dark Mode Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className='bx bx-moon theme-icon'></i>
-                screen
+                {
+                  darkMode ?(
+                    <i className="bx bx-moon"></i>
+                  ):(
+                    <i className="bx bx-sun"></i>
+                  )
+                }
+                Dark Mode
               </span>
               <div className="right-setting">
                 <ReactSwitch
-                  onChange={handleToggle}
-                  checked={isToggled}
+                  onChange={toggleDarkMode} // Directly toggles dark mode
+                  checked={darkMode} // Binds to dark mode state
                   onColor="#007bff"
-                  offColor="ff6868"
+                  offColor="#ff6868"
                   checkedIcon={false}
                   uncheckedIcon={false}
                   height={20}
                   width={48}
+                />
+              </div>
+            </li>
 
-                />
+            {/* Currency Change Toggle */}
+            <li className="setting-list">
+              <span className="left-setting">
+                <i className="bx bx-dollar"></i> Change Currency
+              </span>
+              <div className="right-setting">
+                <select name="currency" 
+                value={currency}
+                className="cur-setting" onChange={(e)=> changeCurrency(e.target.value)}>
+                  {
+                    currencyOptions.length>0?(
+                      currencyOptions.map((curr)=>(
+                        <option value={curr} key={curr} className="curr-options">
+                          {curr.toUpperCase()}
+                        </option>
+                      ))
+                    ):(
+                      <option className="curr-options">
+                        Loading...
+                      </option>
+                    )
+                  }
+                </select>
               </div>
+            </li>
 
-            </li>
+            {/* Alerts Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className='bx bx-dollar'></i>
-                change currency
+                <i className="bx bxs-bell"></i> Alerts
               </span>
               <div className="right-setting">
                 <ReactSwitch
-                  onChange={handleToggle}
-                  checked={isToggled}
+                  onChange={() => setAlertsEnabled((prev) => !prev)}
+                  checked={alertsEnabled}
                   onColor="#007bff"
-                  offColor="ff6868"
+                  offColor="#ff6868"
                   checkedIcon={false}
                   uncheckedIcon={false}
                   height={20}
@@ -60,35 +95,18 @@ const SettingDialogue = () => {
                 />
               </div>
             </li>
+
+            {/* Delete All Data Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className='bx bxs-bell'></i>
-                alerts
+                <i className="bx bx-data"></i> Delete All Data
               </span>
               <div className="right-setting">
                 <ReactSwitch
-                  onChange={handleToggle}
-                  checked={isToggled}
+                  onChange={() => setDeleteConfirmation((prev) => !prev)}
+                  checked={deleteConfirmation}
                   onColor="#007bff"
-                  offColor="ff6868"
-                  checkedIcon={false}
-                  uncheckedIcon={false}
-                  height={20}
-                  width={48}
-                />
-              </div>
-            </li>
-            <li className="setting-list">
-              <span className="left-setting">
-                <i className='bx bx-data'></i>
-                delete all data
-              </span>
-              <div className="right-setting">
-                <ReactSwitch
-                  onChange={handleToggle}
-                  checked={isToggled}
-                  onColor="#007bff"
-                  offColor="ff6868"
+                  offColor="#ff6868"
                   checkedIcon={false}
                   uncheckedIcon={false}
                   height={20}

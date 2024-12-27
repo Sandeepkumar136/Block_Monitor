@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import DialogOne from '../dialog/DialogOne';
 import { useDialog } from '../context/DialogContext';
 import { Link } from 'react-router-dom';
-import { useSetting } from '../context/Sdialog';
+import { useSetting } from '../context/SdialogContext';
 import SettingDialogue from '../dialog/SettingDialogue';
 
 const Navbar = () => {
@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
         <ul className="sidebar-list">
           <li className="sidebar-items">Cryptocurrency List</li>
-          <li className="sidebar-items">Compare Coins</li>
+          <Link to="/coincompare" className="sidebar-items">Compare Coins</Link>
           <li className="sidebar-items">News and Market Trends</li>
           <li className="sidebar-items">About us</li>
 
