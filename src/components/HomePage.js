@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCurrency } from '../context/CurrencyContext';
 
 const HomePage = () => {
-    const { currency, getCurrencySymbol} = useCurrency();    const [coins, setCoins] = useState([]);
+    const { currency, getCurrencySymbol } = useCurrency(); const [coins, setCoins] = useState([]);
     const [trendingCoins, setTrendingCoins] = useState([]);
     const [topPerformers, setTopPerformers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -69,11 +69,13 @@ const HomePage = () => {
                 <div className="h-card-contain">
                     {trendingCoins.map((coin) => (
                         <div key={coin.id} className="h-sub-card">
-                            <img className='h-sub-img' src={coin.image} alt={coin.name} />
-                            <h4>{coin.name}</h4>
+                            <div className="img-t-sub-card">
+                                <img className='h-sub-img' src={coin.image} alt={coin.name} />
+                                <h4>{coin.name}</h4>
+                            </div>
                             <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                             <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
-                            <p className='cps' style={{background: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}`}}>Price Change: {coin.price_change_percentage_24h.toFixed(2)}%</p>
+                            <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                             <button onClick={() => handleViewDetails(coin.id)}>View Details</button>
                         </div>
                     ))}
@@ -84,11 +86,13 @@ const HomePage = () => {
                 <div className="h-card-contain">
                     {topPerformers.map((coin) => (
                         <div key={coin.id} className="h-sub-card">
-                            <img className='h-sub-img' src={coin.image} alt={coin.name} />
-                            <h4>{coin.name}</h4>
+                            <div className="img-t-sub-card">
+                                <img className='h-sub-img' src={coin.image} alt={coin.name} />
+                                <h4>{coin.name}</h4>
+                            </div>
                             <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                             <p>Market Cap: {getCurrencySymbol(currency)} {coin.market_cap.toLocaleString()}</p>
-                            <p className='cps' style={{background: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}`}} >Price Change: {coin.price_change_percentage_24h.toFixed(2)}%</p>
+                            <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                             <button onClick={() => handleViewDetails(coin.id)}>View Details</button>
                         </div>
                     ))}
@@ -99,13 +103,14 @@ const HomePage = () => {
                 <div className="h-card-contain">
                     {coins.length > 0 ? (
                         coins.map((coin) => (
-                            <div key={coin.id} className="h-sub-card">
+                            <div key={coin.id} className="h-sub-card" onClick={() => handleViewDetails(coin.id)} >
+                                <div className="img-t-sub-card">
                                 <img className='h-sub-img' src={coin.image} alt={coin.name} />
                                 <h4>{coin.name}</h4>
+                            </div>
                                 <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                                 <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
-                                <p className='cps' style={{background: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}`}} >Price Change: {coin.price_change_percentage_24h.toFixed(2)}%</p>
-                                <button onClick={() => handleViewDetails(coin.id)}>View Details</button>
+                                <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                             </div>
                         ))
                     ) : (

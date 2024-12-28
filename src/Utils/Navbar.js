@@ -21,14 +21,14 @@ const Navbar = () => {
           <h2 className='logo'>Block monitor</h2>
         </Link>
         <ul className="nav-list">
-          <button onClick={openDialog} className="nav-items"><i className='bx bx-search-alt' ></i><span className="n-icon-text">Search</span></button>
-          <button className="nav-items"><i className='bx bxs-bookmark-star' ></i><span className="n-icon-text">Favorites</span></button>
-          <button className="nav-items" onClick={openSetting} ><i className='bx bx-cog'></i><span className='n-icon-text'>Settings</span></button>
-          <li className="nav-items-plane">About us</li>
-        </ul>
-        <button onClick={toggleSidebar} className="nav-toggle">
+          <button onClick={openDialog} className="nav-items"><i className='bx bx-search-alt' ></i></button>
+          <button className="nav-items"><i className='bx bxs-bookmark-star' ></i></button>
+          <button className="nav-items" onClick={openSetting} ><i className='bx bx-cog'></i></button>
+          <button onClick={toggleSidebar} className="nav-items-toggle">
           <i className='bx bx-menu' ></i>
         </button>
+        </ul>
+        
       </nav>
       <aside className={showSidebar ? "sidebar active" : "sidebar"}>
         <Link to="/" onClick={toggleSidebar} className="sidebar-header">
