@@ -2,10 +2,27 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Line } from "react-chartjs-2"; // Price chart component
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  LineElement,
+  PointElement, // Register this for chart points
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
 // Register necessary chart components
-ChartJS.register(LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend);
+ChartJS.register(
+  LineElement,
+  PointElement, // Added missing PointElement
+  CategoryScale,
+  LinearScale,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const CoinDetails = () => {
   const { id } = useParams(); // Extract the coin ID from the URL
@@ -46,7 +63,9 @@ const CoinDetails = () => {
 
   // Prepare data for the price chart
   const chartData = {
-    labels: priceHistory ? priceHistory.map(([timestamp]) => new Date(timestamp).toLocaleDateString()) : [],
+    labels: priceHistory
+      ? priceHistory.map(([timestamp]) => new Date(timestamp).toLocaleDateString())
+      : [],
     datasets: [
       {
         label: "Price (USD)",
@@ -59,82 +78,148 @@ const CoinDetails = () => {
 
   return (
     <div padding={3}>
-      <h4>{coinData.name} ({coinData.symbol.toUpperCase()})</h4>
-      
+      <h4>
+        {coinData.name} ({coinData.symbol?.toUpperCase() || "N/A"})
+      </h4>
+
       {/* Coin Price and Market Data */}
-      <p>Current Price: ${coinData.market_data.current_price.usd}</p>
-      <p>Market Cap: ${coinData.market_data.market_cap.usd.toLocaleString()}</p>
+      <p>
+        Current Price: $
+        {coinData.market_data?.current_price?.usd
+          ? coinData.market_data.current_price.usd
+          : "N/A"}
+      </p>
+      <p>
+        Market Cap: $
+        {coinData.market_data?.market_cap?.usd
+          ? coinData.market_data.market_cap.usd.toLocaleString()
+          : "N/A"}
+      </p>
 
       {/* Price Change */}
       <p>
         24h Change:{" "}
         <span
           style={{
-            color: coinData.market_data.price_change_percentage_24h > 0 ? "green" : "red",
+            color:
+              coinData.market_data?.price_change_percentage_24h > 0
+                ? "green"
+                : "red",
           }}
         >
-          {coinData.market_data.price_change_percentage_24h.toFixed(2)}%
+          {coinData.market_data?.price_change_percentage_24h
+            ? coinData.market_data.price_change_percentage_24h.toFixed(2)
+            : "N/A"}
+          %
         </span>
       </p>
       <p>
         1h Change:{" "}
         <span
           style={{
-            color: coinData.market_data.price_change_percentage_1h > 0 ? "green" : "red",
+            color:
+              coinData.market_data?.price_change_percentage_1h > 0
+                ? "green"
+                : "red",
           }}
         >
-          {coinData.market_data.price_change_percentage_1h.toFixed(2)}%
+          {coinData.market_data?.price_change_percentage_1h
+            ? coinData.market_data.price_change_percentage_1h.toFixed(2)
+            : "N/A"}
+          %
         </span>
       </p>
       <p>
         7d Change:{" "}
         <span
           style={{
-            color: coinData.market_data.price_change_percentage_7d > 0 ? "green" : "red",
+            color:
+              coinData.market_data?.price_change_percentage_7d > 0
+                ? "green"
+                : "red",
           }}
         >
-          {coinData.market_data.price_change_percentage_7d.toFixed(2)}%
+          {coinData.market_data?.price_change_percentage_7d
+            ? coinData.market_data.price_change_percentage_7d.toFixed(2)
+            : "N/A"}
+          %
         </span>
       </p>
 
       {/* Coin Supply Data */}
-      <p>Circulating Supply: {coinData.market_data.circulating_supply.toLocaleString()}</p>
-      <p>Total Supply: {coinData.market_data.total_supply ? coinData.market_data.total_supply.toLocaleString() : "N/A"}</p>
+      <p>
+        Circulating Supply:{" "}
+        {coinData.market_data?.circulating_supply
+          ? coinData.market_data.circulating_supply.toLocaleString()
+          : "N/A"}
+      </p>
+      <p>
+        Total Supply:{" "}
+        {coinData.market_data?.total_supply
+          ? coinData.market_data.total_supply.toLocaleString()
+          : "N/A"}
+      </p>
 
       {/* All-Time High (ATH) */}
-      <p>All-Time High (ATH): ${coinData.market_data.ath.usd}</p>
-      <p>Market Rank: #{coinData.market_cap_rank}</p>
-      <p>24h Trading Volume: ${coinData.market_data.total_volume.usd.toLocaleString()}</p>
+      <p>
+        All-Time High (ATH): $
+        {coinData.market_data?.ath?.usd
+          ? coinData.market_data.ath.usd.toLocaleString()
+          : "N/A"}
+      </p>
+      <p>
+        Market Rank: #{coinData.market_cap_rank || "N/A"}
+      </p>
+      <p>
+        24h Trading Volume: $
+        {coinData.market_data?.total_volume?.usd
+          ? coinData.market_data.total_volume.usd.toLocaleString()
+          : "N/A"}
+      </p>
 
       {/* Description */}
       <div>
         <h5>Description:</h5>
-        <p>{coinData.description.en ? coinData.description.en.slice(0, 300) + "..." : "N/A"}</p>
+        <p>
+          {coinData.description?.en
+            ? coinData.description.en.slice(0, 300) + "..."
+            : "N/A"}
+        </p>
       </div>
 
       {/* Price Chart */}
       <div>
         <h5>Price Chart (Last 7 days):</h5>
-        {priceHistory && (
-          <Line data={chartData} />
-        )}
+        {priceHistory && <Line data={chartData} />}
       </div>
 
       {/* Links */}
       <div>
         <h5>Links:</h5>
         <p>
-          <a href={coinData.links.homepage[0]} target="_blank" rel="noopener noreferrer">
+          <a
+            href={coinData.links?.homepage?.[0]}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Official Website
           </a>
         </p>
         <p>
-          <a href={`https://www.reddit.com/r/${coinData.id}`} target="_blank" rel="noopener noreferrer">
+          <a
+            href={`https://www.reddit.com/r/${coinData.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Reddit
           </a>
         </p>
         <p>
-          <a href={`https://twitter.com/${coinData.links.twitter_screen_name}`} target="_blank" rel="noopener noreferrer">
+          <a
+            href={`https://twitter.com/${coinData.links?.twitter_screen_name}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Twitter
           </a>
         </p>

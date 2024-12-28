@@ -35,7 +35,7 @@ const SettingDialogue = () => {
                     <i className="bx bx-sun"></i>
                   )
                 }
-                Dark Mode
+                <span className="s-t-it">Dark Mode</span>
               </span>
               <div className="right-setting">
                 <ReactSwitch
@@ -54,7 +54,7 @@ const SettingDialogue = () => {
             {/* Currency Change Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className="bx bx-dollar"></i> Change Currency
+                <i className="bx bx-dollar"></i> <span className="s-t-it">Change Currency</span>
               </span>
               <div className="right-setting">
                 <select name="currency" 
@@ -80,7 +80,7 @@ const SettingDialogue = () => {
             {/* Alerts Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className="bx bxs-bell"></i> Alerts
+                <i className="bx bxs-bell"></i> <span className="s-t-it">Alerts</span>
               </span>
               <div className="right-setting">
                 <ReactSwitch
@@ -99,7 +99,7 @@ const SettingDialogue = () => {
             {/* Delete All Data Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className="bx bx-data"></i> Delete All Data
+                <i className="bx bx-data"></i> <span className="s-t-it">Delete All Data</span>
               </span>
               <div className="right-setting">
                 <ReactSwitch

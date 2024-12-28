@@ -280,14 +280,14 @@ body {
   -webkit-animation: gradient 15s ease infinite;
 }
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
+  0% {
+    background-position: 0% 50%;
 	}
 	50% {
-		background-position: 100% 50%;
+    background-position: 100% 50%;
 	}
 	100% {
-		background-position: 0% 50%;
+    background-position: 0% 50%;
 	}
 }
 
@@ -299,6 +299,12 @@ body {
   text-align: center;
   margin-bottom: 1rem;
 }
+@media only screen and (max-width: 500px) {
+  .h-heading{
+    font-size: 2rem;
+  }
+  
+}
 .h-sub-heading {
   display: flex;
   justify-content: start;
@@ -306,42 +312,113 @@ body {
   padding: 1rem;
   border-bottom: 0.1px solid #333;
   width: 100%;
-  color: #111;
 }
 .h-card-container {
   display: flex;
   justify-content: start;
-  border: 2px solid #000;
   flex-direction: column;
   width: 80%;
   align-self: center;
   justify-self: center;
+  margin-bottom: 1rem;
 }
 .h-card-contain{
-  border: 2px solid #000;
   display: flex;
   justify-content: start;
   align-items: start;
   flex-wrap: wrap;
   gap: 1rem;
+  margin-top: 1rem;
 }
 .h-sub-card{
   display: flex;
   justify-content: start;
   align-items: start;
-  border: 2px solid #000;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #eaedef;
+  //box-shadow: ;
+  cursor: pointer;
+  border-radius: 5px;
+  gap: 0.3rem;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  box-shadow: 0px 0px 1px 0.5px #999;
 }
+.dark-mode .h-sub-card{
+  background-color: #1d0a9a;
+  box-shadow: 0px 0px 1px 0.5px #333;
+}
+.h-sub-card p{
+  font-size: 0.8rem ;
+}
+.cps{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.2rem;
+}
+.price-icon-h{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.price-icon-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
 .img-t-sub-card{
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 1rem;
 }
+.img-t-sub-card h4{
+  font-size: 0.9rem;
+}
+
 .h-sub-img{
   width: 50px;
-  height: 50px; 
+  height: 50px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+@media only screen and (max-width: 768px) {
+  .h-sub-heading{
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  .h-card-container{
+    width: 95%;
+  }
+  .h-card-contain{
+    gap: 0.5rem;
+  }
+  .h-sub-card{
+    padding: 0.3rem 0.5rem;
+    gap: 0.1rem;
+  }
+  .h-sub-img{
+    width: 25px;
+    height: 25px;
+  }
+  .img-t-sub-card{
+    gap: 0.3rem;
+  }
+  .img-t-sub-card h4{
+    font-size: 0.7rem;
+  }
+  .h-sub-card p{
+    font-size: 0.6rem;
+  }
 }
 // Path: src/dialog/DialogOne.js
 #dialog-overlay {
@@ -509,6 +586,11 @@ body {
   animation: slideIn 0.3s ease-in-out;
   -webkit-animation: slideIn 0.3s ease-in-out;
 }
+.dark-mode .setting-box{
+  background: rgba(4, 0, 71, 0.72);
+  box-shadow: 0 4px 30px rgba(0, 72, 255, 0.1);
+  border: 1px solid rgba(0, 6, 189, 0.25);
+}
 .s-heading{
   padding: 0.5rem;
   font-size: 1.1rem;
@@ -533,7 +615,6 @@ body {
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
-  color: #000;
   text-transform: capitalize  ;
 }
 .left-setting i{
@@ -544,4 +625,45 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.cur-setting{
+  appearance: none; /* Remove browser default styling */
+  -webkit-appearance: none; /* WebKit browsers */
+  -moz-appearance: none; /* Firefox */
+  padding: 0.3rem 0.7rem  ; /* Add your desired padding */
+  background: url('data:image/svg+xml;base64,PHN2ZyB4bWxu...') no-repeat right center; /* Optional custom arrow */
+  background-color: #2e70ff;
+  color: #f9f9f9;
+  background-size: 12px; /* Adjust size of custom arrow */
+  border-radius: 4px; /* Optional border-radius */  border: none;
+  outline: none;
+}
+@media only screen and (max-width: 768px) {
+  .s-heading{
+    font-size: 0.8rem;
+  }
+  .setting-box{
+    width: fit-content;
+    padding: 0.5rem;
+  }
+  .setting-list{
+    gap: 1rem;
+  }
+  .setting-items{
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .left-setting i{
+    font-size: 1rem;
+  }
+  .left-setting{
+    gap: 0.2rem;
+  }
+  .s-t-it{
+    font-size: 0.7rem;
+  }
+  .cur-setting{
+    font-size: 0.7rem;
+  }
+  
 }
