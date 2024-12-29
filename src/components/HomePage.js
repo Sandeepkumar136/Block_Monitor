@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrency } from '../context/CurrencyContext';
+import Spinners from '../IT/Spinners';
 
 const HomePage = () => {
     const { currency, getCurrencySymbol } = useCurrency(); const [coins, setCoins] = useState([]);
@@ -51,13 +52,17 @@ const HomePage = () => {
         navigate(`/coin/${coinId}`);
     };
 
-    if (loading) {
-        return <div className="loading">Loading...</div>;
-    }
+    if (loading) return <Spinners ClipLoader={loading} />
 
     if (error) {
-        return <div className="error">Error loading data. Please try again later.</div>;
+        <div className="error-container">
+            <div className="img-container-rr"></div>
+            <h2>Oops! Something went wrong.</h2>
+            <p>Please check your internet connection or try again later.</p>
+            <button onClick={fetchMarketData} ><i className='bx bx-refresh'></i></button>
+        </div>
     }
+
 
     return (
         <div className='home-page'>
@@ -103,16 +108,21 @@ const HomePage = () => {
                         coins.map((coin) => (
                             <div key={coin.id} className="h-sub-card" onClick={() => handleViewDetails(coin.id)} >
                                 <div className="img-t-sub-card">
-                                <img className='h-sub-img' src={coin.image} alt={coin.name} />
-                                <h4>{coin.name}</h4>
-                            </div>
+                                    <img className='h-sub-img' src={coin.image} alt={coin.name} />
+                                    <h4>{coin.name}</h4>
+                                </div>
                                 <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                                 <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
                                 <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                             </div>
                         ))
                     ) : (
-                        <p>No coins available.</p>
+                        <div className="error-container">
+                            <div className="img-container-rr"></div>
+                            <h2>Oops! Something went wrong.</h2>
+                            <p>Please check your internet connection or try again later.</p>
+                            <button onClick={fetchMarketData} ><i className='bx bx-refresh'></i></button>
+                        </div>
                     )}
                 </div>
             </section>

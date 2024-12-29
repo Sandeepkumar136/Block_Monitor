@@ -696,4 +696,62 @@ body {
   .cur-setting {
     font-size: 0.7rem;
   }
+}
+.error-container {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.img-container-rr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(https://i.ibb.co/d0w99jL/8775515-4002783.webp);
+  width: 300px;
+  height: 300px;
+  background-size: contain;
+}
+
+.error-container h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.error-container p {
+  font-size: 1rem;
+}
+
+.error-container button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 2rem;
+  color: #007bff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  .img-container-rr {
+    width: 100px;
+    height: 100px;
+  }
+  .error-container h2 {
+    font-size: 0.7rem;
+  }
+  .error-container p {
+    font-size: 0.6rem;
+  }
+}
+.dark-mode .error-container {
+  background-color: #0c005d;
+  color: #f9f9f9;
 }/*# sourceMappingURL=Style.css.map */
