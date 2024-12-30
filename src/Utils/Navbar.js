@@ -22,7 +22,7 @@ const Navbar = () => {
         </Link>
         <ul className="nav-list">
           <button onClick={openDialog} className="nav-items"><i className='bx bx-search-alt' ></i></button>
-          <button className="nav-items"><i className='bx bxs-bookmark-star' ></i></button>
+          <Link to='/favorites' className="nav-items"><i className='bx bxs-bookmark-star' ></i></Link>
           <button className="nav-items" onClick={openSetting} ><i className='bx bx-cog'></i></button>
           <button onClick={toggleSidebar} className="nav-items-toggle">
           <i className='bx bx-menu' ></i>
@@ -45,7 +45,7 @@ const Navbar = () => {
         </ul>
         <ul className="sidebar-bottom-items">
           <button onClick={()=> {openDialog(); toggleSidebar();}} ><i className='bx bx-search-alt' ></i></button>
-          <button onClick={toggleSidebar} ><i className='bx bxs-bookmark-star' ></i></button>
+          <Link to='/favorites' onClick={toggleSidebar} ><i className='bx bxs-bookmark-star' ></i></Link>
           <button onClick={()=> {openSetting(); toggleSidebar();}} ><i className='bx bx-cog'></i></button>
         </ul>
       </aside>

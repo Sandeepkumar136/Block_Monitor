@@ -11,6 +11,7 @@ const HomePage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
+
     const navigate = useNavigate();
 
     const fetchMarketData = async () => {
@@ -52,15 +53,17 @@ const HomePage = () => {
         navigate(`/coin/${coinId}`);
     };
 
-    if (loading) return <Spinners ClipLoader={loading} />
+    if (loading) return <Spinners />;
 
     if (error) {
-        <div className="error-container">
+        return(
+            <div className="error-container">
             <div className="img-container-rr"></div>
             <h2>Oops! Something went wrong.</h2>
             <p>Please check your internet connection or try again later.</p>
             <button onClick={fetchMarketData} ><i className='bx bx-refresh'></i></button>
         </div>
+        )
     }
 
 
@@ -116,7 +119,7 @@ const HomePage = () => {
                                 <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                             </div>
                         ))
-                    ) : (
+                    ) : error (
                         <div className="error-container">
                             <div className="img-container-rr"></div>
                             <h2>Oops! Something went wrong.</h2>
