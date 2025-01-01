@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSetting } from "../context/SdialogContext";
 import ReactSwitch from "react-switch";
 import { useDarkMode } from "../context/DarkModeContext";

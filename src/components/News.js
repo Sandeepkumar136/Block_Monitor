@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinners from "../IT/Spinners";
+import Slider from "react-slick"; // Import Slick Slider
+import "slick-carousel/slick/slick.css"; // Slick CSS
+import "slick-carousel/slick/slick-theme.css"; // Slick Theme CSS
 
 const News = () => {
   const [marketTrends, setMarketTrends] = useState(null);
@@ -34,29 +37,53 @@ const News = () => {
   }, []);
 
   if (loading) {
-    return <Spinners/>
+    return <Spinners />;
   }
 
   if (error) {
     return (
       <div className="error-container">
-      <div className="img-container-rr"></div>
-      <h2>Oops! Something went wrong.</h2>
-      <p>Please check your internet connection or try again later.</p>
-      <button onClick={marketTrends}>
+        <div className="img-container-rr"></div>
+        <h2>Oops! Something went wrong.</h2>
+        <p>Please check your internet connection or try again later.</p>
+        <button onClick={() => window.location.reload()}>
           <i className="bx bx-refresh"></i>
-      </button>
-  </div>
-    )
+        </button>
+      </div>
+    );
   }
 
-  return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Market Trends</h2>
+  // Slick slider settings
+  const sliderSettings = {
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    slidesToShow: 5, // Default for large screens
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 1024, // Tablet size
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 464, // Mobile size
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
+  return (
+    <div className="home-page-c">
+      <header className="h-heading-container">
+        <h1 className="h-heading">Trending Threds</h1>
+      </header>
+      <div className="th-card-contain">
         {/* Market Overview */}
-        <div style={{ background: "#f4f4f4", padding: "15px", borderRadius: "8px" }}>
+        <div className="th-card">
           <h3>Market Overview</h3>
           <p>
             <strong>Market Cap:</strong> $
@@ -76,7 +103,7 @@ const News = () => {
         </div>
 
         {/* Market Cap Dominance */}
-        <div style={{ background: "#f4f4f4", padding: "15px", borderRadius: "8px" }}>
+        <div className="th-card">
           <h3>Market Cap Dominance</h3>
           <p>
             <strong>BTC:</strong> {marketTrends?.market_cap_percentage?.btc || 0}%
@@ -85,45 +112,38 @@ const News = () => {
             <strong>ETH:</strong> {marketTrends?.market_cap_percentage?.eth || 0}%
           </p>
         </div>
+      </div>
 
-        {/* Top Trending Coins */}
-        <div
-          style={{
-            background: "#f4f4f4",
-            padding: "15px",
-            borderRadius: "8px",
-            gridColumn: "span 2",
-          }}
-        >
-          <h3>Top Trending Coins</h3>
-          <div style={{ display: "flex", gap: "10px", overflowX: "auto" }}>
-            {trendingCoins.map((coin) => (
-              <div
-                key={coin.item.id}
-                style={{
-                  border: "1px solid #ddd",
-                  padding: "10px",
-                  borderRadius: "8px",
-                  minWidth: "150px",
-                  textAlign: "center",
-                }}
-              >
-                <img
-                  src={coin.item.large}
-                  alt={coin.item.name}
-                  style={{ width: "50px", height: "50px" }}
-                />
-                <p>
-                  <strong>{coin.item.name}</strong>
-                </p>
-                <p>Rank: {coin.item.market_cap_rank}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Top Trending Coins */}
+      <div
+      className="th-crs"
+        style={{
+          padding: "15px",
+          borderRadius: "8px",
+          gridColumn: "span 2",
+        }}
+      >
+        <h3 className="th-rtr">Top Trending Coins</h3>
+        <Slider {...sliderSettings}>
+          {trendingCoins.map((coin) => (
+            <div key={coin.item.id} className="cru-cls">
+              <img
+                src={coin.item.large}
+                alt={coin.item.name}
+                style={{ width: "50px", height: "50px" }}
+              />
+              <p>
+                <strong>{coin.item.name}</strong>
+              </p>
+              <p>Rank: {coin.item.market_cap_rank}</p>
+            </div>
+          ))}
+        </Slider>
+      </div>
 
-        {/* 24h Volume */}
-        <div style={{ background: "#f4f4f4", padding: "15px", borderRadius: "8px" }}>
+      {/* 24h Volume */}
+      <div className="th-card-contain">
+        <div className="th-card">
           <h3>24h Volume</h3>
           <p>
             <strong>Volume:</strong> $
@@ -132,7 +152,7 @@ const News = () => {
         </div>
 
         {/* Cryptocurrencies and Markets */}
-        <div style={{ background: "#f4f4f4", padding: "15px", borderRadius: "8px" }}>
+        <div className="th-card">
           <h3>Cryptocurrency Overview</h3>
           <p>
             <strong>Active Cryptocurrencies:</strong>{" "}
