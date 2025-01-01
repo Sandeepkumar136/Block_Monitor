@@ -66,7 +66,7 @@ const TopPerformer = () => {
                 <h1 className="h-heading">Top Performers</h1>
             </header>
             <section className="h-card-container">
-                <h1 className="h-sub-heading">Trending Coins</h1>
+                <h1 className="h-sub-heading">Top Performers</h1>
                 <div className="h-card-contain">
                     {topPerformers.map((coin) => (
                         <div
