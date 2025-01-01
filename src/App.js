@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './Utils/Navbar';
 import './UI/Style.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { DialogProvider } from './context/DialogContext';
 import HomePage from './components/HomePage';
 import CoinDetails from './Pages/CoinDetails';
@@ -17,6 +18,7 @@ import { FavoritesProvider } from './context/FavoritesContext';
 import Favorites from './Pages/Favorites';
 import TrendingCoins from './components/TrendingCoins';
 import TopPerformer from './components/TopPerformer';
+import { ToastProvider } from './context/ToastContext';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
@@ -28,6 +30,7 @@ const App = () => {
         <SdialogProvider>
           <DarkModeProvider>
             <CurrencyProvider>
+                <ToastProvider>
               <FavoritesProvider>
           <Navbar />
           {/* DialogOne with search query management */}
@@ -55,6 +58,7 @@ const App = () => {
           </Routes>
           <ToastContainer/>
           </FavoritesProvider>
+          </ToastProvider>
           </CurrencyProvider>
           </DarkModeProvider>
         </SdialogProvider>

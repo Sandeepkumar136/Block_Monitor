@@ -3,13 +3,13 @@ import { useSetting } from "../context/SdialogContext";
 import ReactSwitch from "react-switch";
 import { useDarkMode } from "../context/DarkModeContext";
 import { useCurrency } from "../context/CurrencyContext";
+import { useToastContext } from "../context/ToastContext";
 
 const SettingDialogue = () => {
   const { isSettingOpen, closeSetting } = useSetting();
   const { darkMode, toggleDarkMode } = useDarkMode();
   const {currency, changeCurrency, currencyOptions} = useCurrency();
-
-  const [alertsEnabled, setAlertsEnabled] = useState(false);
+  const { toastEnabled, setToastEnabled } = useToastContext(); 
   const [deleteConfirmation, setDeleteConfirmation] = useState(false);
 
   // Close dialog when clicking outside
@@ -80,12 +80,12 @@ const SettingDialogue = () => {
             {/* Alerts Toggle */}
             <li className="setting-list">
               <span className="left-setting">
-                <i className="bx bxs-bell"></i> <span className="s-t-it">Alerts</span>
+                <i className="bx bxs-bell"></i> <span className="s-t-it">{toastEnabled ? "Enabled Alerts": "Disabled Alerts"}</span>
               </span>
               <div className="right-setting">
                 <ReactSwitch
-                  onChange={() => setAlertsEnabled((prev) => !prev)}
-                  checked={alertsEnabled}
+                   onChange={() => setToastEnabled(!toastEnabled)}
+                  checked={toastEnabled}
                   onColor="#007bff"
                   offColor="#ff6868"
                   checkedIcon={false}
