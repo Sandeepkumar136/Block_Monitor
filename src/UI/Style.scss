@@ -863,6 +863,14 @@ body {
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+.dark-mode .c-d-text, .c-d-heading{
+  background: rgba(0, 38, 255, 0.31);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 8, 255, 0.1);
+  backdrop-filter: blur(5.8px);
+  -webkit-backdrop-filter: blur(5.8px);
+  border: 1px solid rgba(47, 0, 255, 0.3);
+}
 .c-d-desc {
   width: 100%;
   display: flex;
@@ -925,6 +933,14 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 5px;
   list-style-type: none;
+}
+.dark-mode .official-items{
+  background: rgba(0, 38, 255, 0.31);
+  border-radius: 5px;
+  box-shadow: 0 4px 30px rgba(0, 8, 255, 0.1);
+  backdrop-filter: blur(5.8px);
+  -webkit-backdrop-filter: blur(5.8px);
+  border: 1px solid rgba(47, 0, 255, 0.3);
 }
 .offical-links {
   padding: 0.5rem;
