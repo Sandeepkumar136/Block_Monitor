@@ -3,9 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrency } from '../context/CurrencyContext';
 import Spinners from '../IT/Spinners';
+import { useFavorites } from '../context/FavoritesContext';
 
 const HomePage = () => {
-    const { currency, getCurrencySymbol } = useCurrency(); const [coins, setCoins] = useState([]);
+    const { currency, getCurrencySymbol } = useCurrency();
+    const { favorites, toggleFavorite } = useFavorites();
+    const [coins, setCoins] = useState([]);
     const [trendingCoins, setTrendingCoins] = useState([]);
     const [topPerformers, setTopPerformers] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -53,16 +56,19 @@ const HomePage = () => {
         navigate(`/coin/${coinId}`);
     };
 
+    const isFavorite = (coin) => favorites.some((fav) => fav.id === coin.id);
+
+
     if (loading) return <Spinners />;
 
     if (error) {
-        return(
+        return (
             <div className="error-container">
-            <div className="img-container-rr"></div>
-            <h2>Oops! Something went wrong.</h2>
-            <p>Please check your internet connection or try again later.</p>
-            <button onClick={fetchMarketData} ><i className='bx bx-refresh'></i></button>
-        </div>
+                <div className="img-container-rr"></div>
+                <h2>Oops! Something went wrong.</h2>
+                <p>Please check your internet connection or try again later.</p>
+                <button onClick={fetchMarketData} ><i className='bx bx-refresh'></i></button>
+            </div>
         )
     }
 
@@ -80,9 +86,10 @@ const HomePage = () => {
                             <div className="img-t-sub-card">
                                 <img className='h-sub-img' src={coin.image} alt={coin.name} />
                                 <h4>{coin.name}</h4>
+                                <i onClick={(e) => { e.stopPropagation(); toggleFavorite(coin); }} className={`bx ${isFavorite(coin ) ? 'bxs-bookmark': 'bx-bookmark'}` } ></i>
                             </div>
                             <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
-                            <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
+                            <p>Market Cap: {getCurrencySymbol(currency)} {coin.market_cap.toLocaleString()}</p>
                             <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                         </div>
                     ))}
@@ -96,6 +103,7 @@ const HomePage = () => {
                             <div className="img-t-sub-card">
                                 <img className='h-sub-img' src={coin.image} alt={coin.name} />
                                 <h4>{coin.name}</h4>
+                                <i onClick={(e) => { e.stopPropagation(); toggleFavorite(coin); }} className={`bx ${isFavorite(coin ) ? 'bxs-bookmark': 'bx-bookmark'}` } ></i>
                             </div>
                             <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
                             <p>Market Cap: {getCurrencySymbol(currency)} {coin.market_cap.toLocaleString()}</p>
@@ -113,13 +121,14 @@ const HomePage = () => {
                                 <div className="img-t-sub-card">
                                     <img className='h-sub-img' src={coin.image} alt={coin.name} />
                                     <h4>{coin.name}</h4>
+                                    <i onClick={(e) => { e.stopPropagation(); toggleFavorite(coin); }} className={`bx ${isFavorite(coin ) ? 'bxs-bookmark': 'bx-bookmark'}` } ></i>
                                 </div>
                                 <p>Price: {getCurrencySymbol(currency)} {coin.current_price}</p>
-                                <p>Market Cap: ${coin.market_cap.toLocaleString()}</p>
+                                <p>Market Cap: {getCurrencySymbol(currency)} {coin.market_cap.toLocaleString()}</p>
                                 <p className='cps'><span>Price:</span><span className='price-h' style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} >{coin.price_change_percentage_24h.toFixed(2)}%</span> <span className='price-icon-h'><i className={`price-icon-main bx ${coin.price_change_percentage_24h > 0 ? "bxs-up-arrow" : "bxs-down-arrow"}`} style={{ color: `${coin.price_change_percentage_24h > 0 ? "green" : "red"}` }} ></i></span> </p>
                             </div>
                         ))
-                    ) : error (
+                    ) : error(
                         <div className="error-container">
                             <div className="img-container-rr"></div>
                             <h2>Oops! Something went wrong.</h2>

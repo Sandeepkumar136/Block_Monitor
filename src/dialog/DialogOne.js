@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDialog } from '../context/DialogContext';
+import images from '../IT/ImageExport';
 
 const DialogOne = ({ setSearchQuery }) => {
   const { isOpen, closeDialog } = useDialog();
@@ -29,10 +30,8 @@ const DialogOne = ({ setSearchQuery }) => {
       <div id="dialog-overlay" onClick={handleOutsideClick}>
         <div id="dialog-box">
           <div id="dialog-header">
-            <h2>Search...</h2>
-            <button onClick={closeDialog}>
-              <i className="bx bx-x"></i>
-            </button>
+            <h2>Search Cryptocurrency</h2>
+            <img src={images.search_config} alt="searchbar-img" />
           </div>
           <div id="dialog-content">
             <form onSubmit={handleFormSubmit} className="search-form">
@@ -42,7 +41,7 @@ const DialogOne = ({ setSearchQuery }) => {
                 value={inputValue}
                 onChange={handleInputChange}
               />
-              <button type="submit">Search</button>
+              <button type="submit"><i className='bx bx-search'></i></button>
             </form>
           </div>
         </div>
