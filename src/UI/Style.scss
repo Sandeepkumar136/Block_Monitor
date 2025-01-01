@@ -58,6 +58,9 @@ body {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+  text-decoration: none;
+  border: none;
+  outline: none;
 }
 .nav-items:hover {
   background-color: #f0f0f0;
@@ -67,6 +70,7 @@ body {
   font-size: 1.7rem;
   color: #007bff;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .nav-items-plane {
@@ -216,14 +220,14 @@ body {
   justify-content: center;
   align-items: center;
 }
-.dark-mode .sidebar-bottom-items button {
+.link-items {
   border: none;
   outline: none;
   background-color: transparent;
   font-size: 1.7rem;
   color: #007bff;
+  cursor: pointer;
 }
-
 @media screen and (max-width: 874px) {
   .sidebar {
     width: 100%;

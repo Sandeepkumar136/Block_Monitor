@@ -44,9 +44,9 @@ const Navbar = () => {
 
         </ul>
         <ul className="sidebar-bottom-items">
-          <button onClick={()=> {openDialog(); toggleSidebar();}} ><i className='bx bx-search-alt' ></i></button>
-          <Link to='/favorites' onClick={toggleSidebar} ><i className='bx bxs-bookmark-star' ></i></Link>
-          <button onClick={()=> {openSetting(); toggleSidebar();}} ><i className='bx bx-cog'></i></button>
+          <button  onClick={()=> {openDialog(); toggleSidebar();}} className='link-items' ><i className='bx bx-search-alt' ></i></button>
+          <Link  to='/favorites' onClick={toggleSidebar} className='link-items' ><i className='bx bxs-bookmark-star' ></i></Link>
+          <button  onClick={()=> {openSetting(); toggleSidebar();}} className='link-items' ><i className='bx bx-cog'></i></button>
         </ul>
       </aside>
       <DialogOne />
