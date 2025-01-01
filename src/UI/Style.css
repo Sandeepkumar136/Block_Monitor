@@ -734,6 +734,8 @@ body {
     width: -moz-fit-content;
     width: fit-content;
     padding: 0.5rem;
+    height: -moz-fit-content;
+    height: fit-content;
   }
   .setting-list {
     gap: 1rem;

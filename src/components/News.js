@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Spinners from "../IT/Spinners";
 
 const News = () => {
   const [marketTrends, setMarketTrends] = useState(null);
@@ -33,11 +34,20 @@ const News = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading market trends...</p>;
+    return <Spinners/>
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return (
+      <div className="error-container">
+      <div className="img-container-rr"></div>
+      <h2>Oops! Something went wrong.</h2>
+      <p>Please check your internet connection or try again later.</p>
+      <button onClick={marketTrends}>
+          <i className="bx bx-refresh"></i>
+      </button>
+  </div>
+    )
   }
 
   return (
