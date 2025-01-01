@@ -19,6 +19,7 @@ import Favorites from './Pages/Favorites';
 import TrendingCoins from './components/TrendingCoins';
 import TopPerformer from './components/TopPerformer';
 import { ToastProvider } from './context/ToastContext';
+import { ConfirmDialogProvider } from './context/ConfirmDialogContext';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
@@ -29,6 +30,7 @@ const App = () => {
       <DialogProvider>
         <SdialogProvider>
           <DarkModeProvider>
+            <ConfirmDialogProvider>
             <CurrencyProvider>
                 <ToastProvider>
               <FavoritesProvider>
@@ -60,6 +62,7 @@ const App = () => {
           </FavoritesProvider>
           </ToastProvider>
           </CurrencyProvider>
+          </ConfirmDialogProvider>
           </DarkModeProvider>
         </SdialogProvider>
       </DialogProvider>
