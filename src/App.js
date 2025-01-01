@@ -15,6 +15,7 @@ import News from './components/News';
 import { ToastContainer } from 'react-toastify';
 import { FavoritesProvider } from './context/FavoritesContext';
 import Favorites from './Pages/Favorites';
+import TrendingCoins from './components/TrendingCoins';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
@@ -42,9 +43,11 @@ const App = () => {
             <Route path="/coincompare" element={<CoinCompare />} />
             <Route path="/news" element={<News />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/trending" element={<TrendingCoins />} />
 
             {/* Dynamic coin details route */}
             <Route path="/coin/:id" element={<CoinDetails />} />
+
             {/* Fallback route for 404 */}
             <Route path="*" element={<div>404 - Page Not Found</div>} />
           </Routes>
