@@ -36,8 +36,8 @@ const Navbar = () => {
           <i  className='bx bx-x'></i>
         </Link>
         <ul className="sidebar-list">
-          <li className="sidebar-items">Top Trending</li>
-          <Link to="/trending" className="sidebar-items">Top Performer</Link>
+          <Link onClick={toggleSidebar} to="/trending" className="sidebar-items">Top Trending</Link>
+          <li  className="sidebar-items">Top Performer</li>
           <Link onClick={toggleSidebar} to="/coincompare" className="sidebar-items">Compare Coins</Link>
           <Link onClick={toggleSidebar} to="/news" className="sidebar-items">News and Market Trends</Link>
           <li onClick={toggleSidebar} className="sidebar-items">About us</li>

@@ -1,54 +1,52 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import { useCurrency } from '../context/CurrencyContext';
 import { useFavorites } from '../context/FavoritesContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Spinners from '../IT/Spinners';
 
-const TrendingCoins = () => {
-    const [trendingCoins, setTrendingCoins] = useState([]);
-    const [loading, setLoading] = useState(true); // Initialize with true
+const TopPerformer = () => {
+    const [topPerformers, setTopPerformers] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const { currency, getCurrencySymbol } = useCurrency();
     const { favorites, toggleFavorite } = useFavorites();
     const navigate = useNavigate();
 
-    const fetchTrendingCoins = async () => {
+    const fetchTopPerformers = async () => {
         try {
-            setLoading(true); // Ensure loading is set before fetching
-            setError(false); // Reset error state
             const response = await axios.get(
-                'https://api.coingecko.com/api/v3/coins/markets',
+                "https://api.coingecko.com/api/v3/coins/markets",
                 {
                     params: {
-                        vs_currency: currency,
-                        order: 'market_cap_desc',
+                        vs_currency: currency,  // Use the currency from context
+                        order: "market_cap_desc",
                         per_page: 100,
                         page: 1,
                         sparkline: false,
                     },
                 }
             );
-            setTrendingCoins(response.data.slice(0,12));
+            const topGainers = [...response.data].sort((a, b) => b.price_change_percentage_24h -
+                a.price_change_percentage_24h);
+            setTopPerformers(topGainers.slice(0, 12));
         } catch (err) {
-            console.error('Error fetching trending coins:', err);
+            console.error('Error fetching top Performers:', err);
             setError(true);
         } finally {
             setLoading(false);
-        }
+        };
     };
-
     useEffect(() => {
-        fetchTrendingCoins();
-    }, [currency]); // Dependency: currency
-
+        fetchTopPerformers();
+    }, [currency]);
     const isFavorite = (coin) => favorites.some((fav) => fav.id === coin.id);
 
     const handleViewDetails = (coinId) => {
         navigate(`/coin/${coinId}`);
     };
 
-    if (loading) return <Spinners />;
+    if (loading) return <Spinners />
 
     if (error) {
         return (
@@ -56,22 +54,21 @@ const TrendingCoins = () => {
                 <div className="img-container-rr"></div>
                 <h2>Oops! Something went wrong.</h2>
                 <p>Please check your internet connection or try again later.</p>
-                <button onClick={fetchTrendingCoins}>
+                <button onClick={fetchTopPerformers}>
                     <i className="bx bx-refresh"></i>
                 </button>
             </div>
         );
-    }
-
+    };
     return (
-        <div className="home-page">
+        <div className='home-page'>
             <header className="h-heading-container">
-                <h1 className="h-heading">Trending Coins</h1>
+                <h1 className="h-heading">Top Performers</h1>
             </header>
             <section className="h-card-container">
                 <h1 className="h-sub-heading">Trending Coins</h1>
                 <div className="h-card-contain">
-                    {trendingCoins.map((coin) => (
+                    {topPerformers.map((coin) => (
                         <div
                             key={coin.id}
                             className="h-sub-card"
@@ -150,8 +147,10 @@ const TrendingCoins = () => {
                     ))}
                 </div>
             </section>
-        </div>
-    );
-};
 
-export default TrendingCoins;
+        </div>
+    )
+}
+
+export default TopPerformer
+
