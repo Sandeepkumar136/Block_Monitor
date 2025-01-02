@@ -1,30 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Line } from "react-chartjs-2"; // Price chart component
-import {
-  Chart as ChartJS,
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
 import Spinners from "../IT/Spinners";
 import { useCurrency } from "../context/CurrencyContext";
+import ReactApexChart from "react-apexcharts";
+import Aos from "aos";
+import 'aos/dist/aos.css';
 
-// Register necessary chart components
-ChartJS.register(
-  LineElement,
-  PointElement,
-  CategoryScale,
-  LinearScale,
-  Title,
-  Tooltip,
-  Legend
-);
 
 const CoinDetails = () => {
   const { id } = useParams(); // Extract the coin ID from the URL
@@ -32,6 +14,7 @@ const CoinDetails = () => {
   const [loading, setLoading] = useState(true);
   const [priceHistory, setPriceHistory] = useState(null); // Store price chart data
   const { currency, getCurrencySymbol } = useCurrency(); // Context for currency
+  
 
   const fetchCoinDetails = async () => {
     try {
@@ -45,7 +28,10 @@ const CoinDetails = () => {
       const priceHistoryResponse = await axios.get(
         `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=7`
       );
-      setPriceHistory(priceHistoryResponse.data.prices);
+      setPriceHistory(priceHistoryResponse.data.prices.map(([timestamp, price])=>({
+        x: new Date(timestamp).toISOString(),
+        y: price,
+      })));
     } catch (error) {
       console.error("Error fetching coin details:", error);
     } finally {
@@ -55,7 +41,25 @@ const CoinDetails = () => {
 
   useEffect(() => {
     fetchCoinDetails();
-  }, [id, currency]); // Re-fetch data when coin ID or currency changes
+  }, [id, currency]); 
+
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+      once: false,
+      easing: 'ease-in-out'
+    });
+  }, [])
+  
+
+  const getLineColor = ()=>{
+    if(priceHistory.length <2) return "#008ffb";
+    const lastPrice = priceHistory[priceHistory.length -1].y;
+    const prevPrice = priceHistory[priceHistory.length -2].y;
+
+    return lastPrice> prevPrice ? "green": "red"
+  };
 
   if (loading) return <Spinners />;
 
@@ -72,20 +76,62 @@ const CoinDetails = () => {
     );
   }
 
-  // Prepare data for the price chart
-  const chartData = {
-    labels: priceHistory.map(([timestamp]) =>
-      new Date(timestamp).toLocaleDateString()
-    ),
-    datasets: [
-      {
-        label: `Price (${getCurrencySymbol(currency)})`,
-        data: priceHistory.map(([_, price]) => price),
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+  // APEX CHART
+  const chartOptions = {
+    chart: {
+      type: 'line',
+      zoom: {
+        enabled: true,
       },
-    ],
+    },
+    xaxis: {
+      type: 'datetime',
+      style: {
+        colors: "#fff",  // Ensuring x-axis color is white
+      },
+    },
+    yaxis: {
+      labels: {
+        formatter: (value) => `${getCurrencySymbol(currency)} ${value.toFixed(2)}`,
+      },
+      style: {
+        colors: "#fff",  // Ensuring y-axis label color is white
+      },
+    },
+    tooltip: {
+      x: {
+        format: "dd-MMM-yyyy",
+      },
+    },
+    colors: [getLineColor()], // Dynamically set line color
+    grid: {
+      borderColor: "#fff",  // Grid line color
+    },
+    // If you need to modify other axes or elements, you can target them here
+    plotOptions: {
+      bar: {
+        horizontal: true,
+      },
+    },
+    // Optional zaxis configuration (if needed for 3D charts or additional data series)
+    zaxis: {
+      show: true,
+      labels: {
+        style: {
+          color: "#fff",  // Adjust z-axis color here
+        },
+      },
+    },
   };
+  
+
+  const chartSeries =[
+    {
+      name: `Price (${getCurrencySymbol(currency)})`,
+      data: priceHistory
+    },
+  ];
+
 
   return (
     <div className="coin-details-container">
@@ -98,6 +144,7 @@ const CoinDetails = () => {
               className="c-d-img"
             />            
             {coinData.name} ({coinData.symbol?.toUpperCase() || "N/A"})
+      
           </h4>
           <p className="c-d-text">
             <span className="g-b-s">Current Price:</span> <span className="g-b-s-t">{getCurrencySymbol(currency)}
@@ -209,9 +256,13 @@ const CoinDetails = () => {
         </p>
       </div>
       {/* Price Chart */}
-      <div className="c-d-chart-container">
+      <div className="c-d-chart-container" data-aos="fade-up" >
         <h5>Price Chart (Last 7 days):</h5>
-        {priceHistory && <Line data={chartData} />}
+        <ReactApexChart 
+        options={chartOptions}
+        series={chartSeries}
+        type="line"
+        />
       </div>
       {/* Links */}
       <div className="of-links">
