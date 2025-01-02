@@ -1358,6 +1358,13 @@ body {
   padding: 1rem;
   border: 1px solid rgba(47, 0, 255, 0.3);
 }
+.cru-cls img{
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
 @media only screen and (max-width: 768px) {
   .th-card-contain{
     padding: 0.5px;
