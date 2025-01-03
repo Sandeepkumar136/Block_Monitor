@@ -1422,3 +1422,80 @@ body {
   }
   
 }
+// About.js
+.ab-img-contain{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ab-img{
+  width: 300px;
+  height: 300px;
+}
+// about sidebar
+.ab-sidebar{
+  position: fixed;
+  top: 4.7rem;
+  width: 300px;
+  height: 100%;
+  display: block;
+  left: 0;
+  border: 2px solid #000;
+
+}
+
+
+
+
+// .ab-sidebar {
+//   width: 250px;
+//   transition: transform 0.3s ease;
+// }
+
+// .ab-sidebar.closed {
+//   transform: translateX(-100%);
+// }
+
+// .ab-sidebar.open {
+//   transform: translateX(0);
+// }
+
+// /* Toggle Button */
+// .toggle-button {
+//   position: fixed; /* Ensures button is always visible */
+//   top: 10px;
+//   left: 10px;
+//   z-index: 1100;
+//   background-color: #333;
+//   color: #fff;
+//   padding: 10px 15px;
+//   border: none;
+//   cursor: pointer;
+//   font-size: 14px;
+//   border-radius: 5px;
+// }
+
+// .toggle-button.open {
+//   background-color: #ff5757;
+// }
+
+// .toggle-button.closed {
+//   background-color: #57a4ff;
+// }
+
+// /* Mobile View */
+// @media (max-width: 768px) {
+//   .ab-sidebar {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     height: 100%;
+//     background: #f9f9f9;
+//     z-index: 1000;
+//   }
+
+//   .toggle-button {
+//     display: block;
+//   }
+// }
+

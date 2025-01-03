@@ -20,6 +20,7 @@ import TrendingCoins from './components/TrendingCoins';
 import TopPerformer from './components/TopPerformer';
 import { ToastProvider } from './context/ToastContext';
 import { ConfirmDialogProvider } from './context/ConfirmDialogContext';
+import About from './components/About';
 
 const App = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Manage search query state
@@ -51,6 +52,7 @@ const App = () => {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/trending" element={<TrendingCoins />} />
             <Route path="/topperformers" element={<TopPerformer />} />
+            <Route path="/about" element={<About />} />
 
             {/* Dynamic coin details route */}
             <Route path="/coin/:id" element={<CoinDetails />} />

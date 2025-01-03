@@ -40,7 +40,7 @@ const Navbar = () => {
           <Link to="/topperformers" onClick={toggleSidebar} className="sidebar-items">Top Performer</Link>
           <Link onClick={toggleSidebar} to="/coincompare" className="sidebar-items">Compare Coins</Link>
           <Link onClick={toggleSidebar} to="/news" className="sidebar-items">News and Market Trends</Link>
-          <li onClick={toggleSidebar} className="sidebar-items">About us</li>
+          <Link to="/about" onClick={toggleSidebar} className="sidebar-items">About us</Link>
 
         </ul>
         <ul className="sidebar-bottom-items">

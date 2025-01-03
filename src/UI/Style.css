@@ -1518,4 +1518,24 @@ body {
   .th-card p {
     font-size: 0.7rem;
   }
+}
+.ab-img-contain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ab-img {
+  width: 300px;
+  height: 300px;
+}
+
+.ab-sidebar {
+  position: fixed;
+  top: 4.7rem;
+  width: 300px;
+  height: 100%;
+  display: block;
+  left: 0;
+  border: 2px solid #000;
 }/*# sourceMappingURL=Style.css.map */
