@@ -1,28 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const AboutSidebar = ({ sections, activeSection, scrollToSection }) => {
-  const [isAbSidebarOpen, setAbSidebarOpen] = useState(true); // Sidebar toggle state
-  const [isMobileView, setIsMobileView] = useState(false); // Mobile view detection
-
-  // Detect window resize and update mobile view state
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
-      if (window.innerWidth > 768) setAbSidebarOpen(true); // Ensure sidebar stays open in desktop view
-    };
-
-    handleResize(); // Initial call to set state
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Toggle Sidebar Function
-  const toggleAbSidebar = () => {
-    if (isMobileView) {
-      setAbSidebarOpen((prevState) => !prevState);
-    }
-  };
+  const [isAbSidebarOpen, setisSidebarOpen] = useState(true);
+  const ToggleSidebar = ()=>{
+    setisSidebarOpen(!isAbSidebarOpen);
+  }
 
   // Menu Items Array
   const menuItems = [
@@ -38,44 +20,31 @@ const AboutSidebar = ({ sections, activeSection, scrollToSection }) => {
 
   return (
     <>
-      {/* Toggle Button (Always Visible in Mobile View) */}
-      {isMobileView && (
-        <button
-          className={`toggle-button ${isAbSidebarOpen ? "open" : "closed"}`}
-          onClick={toggleAbSidebar}
-        >
-          {isAbSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
-        </button>
-      )}
+    <div className="ab-container-sbf">
+    <i onClick={ToggleSidebar} className={`bx ${isAbSidebarOpen? "bx-chevron-left": "bx-chevron-right"}`} ></i>
+      <p className="heading-ab">About</p>
+    </div>
 
-      {/* Sidebar */}
-      <aside className={`ab-sidebar ${isAbSidebarOpen ? "open" : "closed"}`}>
-        <div className="ab-logo-sec">
-          {!isMobileView && (
-            <div className="ab-btn">
-              <button className="toggle-button" onClick={toggleAbSidebar}>
-                {isAbSidebarOpen ? "Close Sidebar" : "Open Sidebar"}
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* Sidebar Menu Items */}
-        <ul className="ab-items">
-          {menuItems.map((item) => (
-            <li
-              key={item.id}
-              onClick={() => {
-                scrollToSection(item.id);
-                if (isMobileView) toggleAbSidebar(); // Auto-close sidebar in mobile view after click
-              }}
-              className={`ab-item ${activeSection === item.id ? "active" : ""}`}
-            >
-              {item.label}
-            </li>
-          ))}
-        </ul>
-      </aside>
+    <aside className={`ab-sidebar ${isAbSidebarOpen? "open":"closed"}`} >
+      <div className="ab-contain">
+      <i onClick={ToggleSidebar} className={`bx ${isAbSidebarOpen? "bx-chevron-left": "bx-chevron-right"}`} ></i>
+      <p className="heading-ab">About</p>
+      </div>
+      <ul className="ab-items">
+        {menuItems.map((item) => (
+          <li
+            key={item.id}
+            onClick={() => {
+              scrollToSection(item.id);
+              ToggleSidebar();
+            }}
+            className={`ab-list ${activeSection=== item.id ? "active": ""}`}
+          >
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    </aside>
     </>
   );
 };

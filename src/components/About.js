@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import images from "../IT/ImageExport";
 import AboutSidebar from "../content/AboutSidebar";
+import Json from "../JSON/JsonProvider";
 
 const About = () => {
   const sections = {
@@ -47,25 +48,86 @@ const About = () => {
         activeSection={activeSection}
         scrollToSection={scrollToSection}
       />
+      <section ref={sections.welcome} id="welcome">
+        <div className="w-intro-contain">
+        <div className="main-question-w">
       <div className="ab-img-contain">
         <img className="ab-img" src={images.about} alt="" />
       </div>
-      <section ref={sections.welcome} id="welcome">
-        <h2>Welcome to Block Monitor</h2>
-        <p>Welcome to the world of cryptocurrency tracking!</p>
+          <h2 className="intro-q">{Json.welcome.blockMonitor.introduction.title}</h2>
+          <p className="intro-p-disc">{Json.welcome.blockMonitor.introduction.description}</p>
+        </div>
+        <div className="quest-contain-w">
+          <h2 className="q-c-w-m">{Json.welcome.blockMonitor.whyChooseUs.title}</h2>
+          <ul className="q-m-co-list">
+            {Json.welcome.blockMonitor.whyChooseUs.features.map((feature, index)=>(
+              <li key={index} className="q-m-co-item">
+                <strong>{feature.title}</strong> <span>{feature.description}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="quest-contain-w">
+          <h2 className="q-c-w-m">{Json.welcome.blockMonitor.whoCanBenefit.title}</h2>
+          <ul className="q-m-co-list">
+            {Json.welcome.blockMonitor.whoCanBenefit.groups.map((group, index)=>(
+              <li key={index} className="q-m-co-item">
+                <strong>{group.title}</strong> <span>{group.description}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="lpu-qus-fds">
+          <h2 className="heading-lpu">{Json.welcome.blockMonitor.community.title}</h2>
+          <p className="text-lpu">{Json.welcome.blockMonitor.community.description}</p>
+        </div>
+        </div>
       </section>
       <section ref={sections.what} id="what">
-        <h2>What is CryptoTrack?</h2>
-        <p>CryptoTrack is a cutting-edge cryptocurrency tracking app...</p>
+      <div className="w-intro-contain">
+        <div className="main-question-w">
+      <div className="ab-img-contain">
+        <img className="ab-img" src={images.what_is_blockmonitor} alt="" />
+      </div>
+          <h2 className="intro-q">{Json.what.blockMonitor.section}</h2>
+          <p className="intro-p-disc">{Json.what.blockMonitor.description}</p>
+          <p className="intro-p-disc" style={{margin: "1rem"}}>{Json.what.blockMonitor.poweredBy}</p>
+        </div>
+        <div className="quest-contain-w">
+          <h2 className="q-c-w-m">{Json.welcome.blockMonitor.whyChooseUs.title}</h2>
+          <ul className="q-m-co-list">
+            {Json.what.blockMonitor.highlights.map((highlight, index)=>(
+              <li key={index} className="q-m-co-item">
+                <strong>{highlight.title}</strong> <span>{highlight.description}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="lpu-qus-fds">
+          <h2 className="heading-lpu">Conclusion</h2>
+          <p className="text-lpu">{Json.what.blockMonitor.conclusion}</p>
+        </div>
+        </div>
       </section>
       <section ref={sections.features} id="features">
-        <h2>Our Features</h2>
-        <ul>
-          <li>Real-Time Cryptocurrency Prices</li>
-          <li>Market Trends & Analytics</li>
-          <li>Coin Details</li>
-          <li>Global Market Overview</li>
-        </ul>
+      <div className="w-intro-contain">
+        <div className="main-question-w">
+      <div className="ab-img-contain">
+        <img className="ab-img" src={images.features} alt="" />
+      </div>
+          <h2 className="intro-q">{Json.features.blockMonitor.section}</h2>
+          <p className="intro-p-disc">{Json.features.blockMonitor.description}</p>
+        </div>
+        <div className="quest-contain-w">
+          <ul className="q-m-co-list">
+            {Json.features.blockMonitor.features.map((feature, index)=>(
+              <li key={index} className="q-m-co-item">
+                <strong>{feature.title}</strong> <span>{feature.description}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        </div>
       </section>
       <section ref={sections.why} id="why">
         <h2>Why CoinGecko API?</h2>

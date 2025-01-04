@@ -1,0 +1,41 @@
+{
+    "blockMonitor": {
+      "section": "Features of BlockMonitor",
+      "description": "BlockMonitor is packed with powerful features that cater to both beginners and seasoned crypto enthusiasts. Here’s a look at what our app has to offer:",
+      "features": [
+        {
+          "title": "Real-Time Cryptocurrency Data",
+          "description": "Get instant updates on the latest prices, market cap, trading volume, and other key metrics for over 6,000 cryptocurrencies. Stay ahead of the curve with live data straight from the CoinGecko API."
+        },
+        {
+          "title": "Search and Filter",
+          "description": "Easily search for any cryptocurrency by name or symbol, and filter through coins based on market cap, volume, price changes, or custom preferences. Find exactly what you’re looking for quickly and efficiently."
+        },
+        {
+          "title": "Interactive Charts and Historical Data",
+          "description": "Visualize the performance of your favorite cryptocurrencies with interactive price charts. Access historical data to analyze price trends, market behavior, and make data-driven decisions."
+        },
+        {
+          "title": "Multi-Currency Support",
+          "description": "Track cryptocurrency prices in your preferred currency. BlockMonitor supports multiple fiat currencies (USD, EUR, GBP, etc.), making it easy to view data in the format that works best for you."
+        },
+        {
+          "title": "Portfolio Tracking (Optional)",
+          "description": "Keep track of your cryptocurrency holdings with the built-in portfolio tracker. Monitor your investment's performance and adjust your strategy accordingly."
+        },
+        {
+          "title": "Easy-to-Navigate User Interface",
+          "description": "Our sleek and user-friendly interface is designed for simplicity, allowing you to focus on what matters most—tracking cryptocurrency prices, trends, and data."
+        },
+        {
+          "title": "Customizable Alerts (Optional)",
+          "description": "Set price alerts for specific cryptocurrencies. Get notified when the price of your selected assets hits your desired target."
+        },
+        {
+          "title": "Detailed Coin Information",
+          "description": "Dive deeper into each cryptocurrency with comprehensive details, including market data, price history, coin supply, and more."
+        }
+      ]
+    }
+  }
+  
