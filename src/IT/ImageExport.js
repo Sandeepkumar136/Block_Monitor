@@ -7,5 +7,7 @@ const images = {
     features: require('../IT/Assets/rb_5986.png'),
     coin: require('../IT/Assets/rb_82643.png'),
     Intregration: require('../IT/Assets/rb_7874.png'),
+    mission: require('../IT/Assets/rb_10139.png'),
+    tech: require('../IT/Assets/rb_25336.png')
 }
 export default images;

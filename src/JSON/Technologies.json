@@ -1,0 +1,94 @@
+{
+    "technologiesUsed": {
+      "description": "BlockMonitor is powered by the following technologies to ensure optimal performance, responsiveness, and functionality:",
+      "categories": {
+        "frontendTechnologies": [
+          {
+            "name": "React",
+            "description": "The backbone of our app, providing a fast and interactive user interface."
+          },
+          {
+            "name": "React Router DOM",
+            "description": "Enables seamless navigation and routing for a smooth user experience."
+          },
+          {
+            "name": "AOS (Animate on Scroll)",
+            "description": "For dynamic scroll-based animations to enhance the app’s visuals."
+          }
+        ],
+        "dataVisualization": [
+          {
+            "name": "Chart.js",
+            "description": "To render interactive charts and visualize cryptocurrency trends."
+          },
+          {
+            "name": "ApexCharts and React-ApexCharts",
+            "description": "For creating advanced, customizable graphs and data visualizations."
+          },
+          {
+            "name": "AG Charts and AG Grid",
+            "description": "To present comprehensive data tables and sophisticated charts for in-depth analysis."
+          }
+        ],
+        "stateManagementUtilities": [
+          {
+            "name": "Axios",
+            "description": "For fetching real-time cryptocurrency data from the CoinGecko API."
+          },
+          {
+            "name": "React-Toastify",
+            "description": "To provide elegant toast notifications for user feedback and alerts."
+          },
+          {
+            "name": "React-Switch",
+            "description": "For interactive toggle switches (e.g., switching between dark and light modes)."
+          }
+        ],
+        "userInterfaceEnhancements": [
+          {
+            "name": "React Slick and Slick Carousel",
+            "description": "To implement responsive and touch-friendly carousels."
+          },
+          {
+            "name": "React Multi Carousel",
+            "description": "For building advanced multi-item carousels."
+          },
+          {
+            "name": "React Spinners",
+            "description": "To display loading animations while fetching data."
+          },
+          {
+            "name": "Vercel",
+            "description": "BlockMonitor is deployed on Vercel for its fast, scalable, and reliable hosting platform."
+          }
+        ]
+      },
+      "whyTheseTechnologies": [
+        {
+          "reason": "Performance",
+          "description": "React ensures high performance with its virtual DOM and efficient rendering."
+        },
+        {
+          "reason": "Customization",
+          "description": "Libraries like Chart.js and ApexCharts allow for in-depth data visualization."
+        },
+        {
+          "reason": "User Experience",
+          "description": "AOS and React Slick enhance the app’s interactivity and aesthetic appeal."
+        },
+        {
+          "reason": "Real-Time Data",
+          "description": "Axios ensures reliable API communication, crucial for live cryptocurrency updates."
+        },
+        {
+          "reason": "Scalability",
+          "description": "With Vercel, we ensure that BlockMonitor is always fast and scalable, no matter the user base size."
+        }
+      ]
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "To empower users with a reliable, visually appealing, and real-time cryptocurrency tracking platform that simplifies navigating the ever-changing world of digital assets."
+    }
+  }
+  

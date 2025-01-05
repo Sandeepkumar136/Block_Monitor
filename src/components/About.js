@@ -11,6 +11,7 @@ const About = () => {
     why: useRef(null),
     Intregration: useRef(null),
     mission: useRef(null),
+    tech: useRef(null),
     team: useRef(null),
     support: useRef(null),
     touch: useRef(null),
@@ -49,6 +50,8 @@ const About = () => {
         activeSection={activeSection}
         scrollToSection={scrollToSection}
       />
+      <div className="ab-con-contain">
+
       <section ref={sections.welcome} id="welcome">
         <div className="w-intro-contain">
           <div className="main-question-w">
@@ -191,12 +194,92 @@ const About = () => {
         </div>
       </section>
       <section ref={sections.mission} id="mission">
-        <h2>Our Mission</h2>
-        <p>Our mission is to provide a seamless experience...</p>
+      <div className="w-intro-contain">
+          <div className="main-question-w">
+            <div className="ab-img-contain">
+              <img className="ab-img" src={images.mission} alt="what" />
+            </div>
+            <h2 className="intro-q">{Json.mission.mission.title}</h2>
+            <p className="intro-p-disc">{Json.mission.mission.description}</p>
+          </div>
+          <div className="quest-contain-w">
+            <ul className="q-m-co-list">
+              {Json.mission.mission.whatWeStandFor.map((element, index) => (
+                <li key={index} className="q-m-co-item">
+                  <strong>{element.title}</strong> <span>{element.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section ref={sections.tech} id="team">
+      <div className="w-intro-contain">
+          <div className="main-question-w">
+            <div className="ab-img-contain">
+              <img className="ab-img" src={images.tech} alt="about" />
+            </div>
+            <h2 className="intro-q">Technologies Used.</h2>
+            <p className="intro-p-disc">{Json.tech.technologiesUsed.description}</p>
+          </div>
+          <div className="quest-contain-w">
+            <h2 className="q-c-w-m">Frontend Technologies.</h2>
+            <ul className="q-m-co-list">
+              {Json.tech.technologiesUsed.categories.frontendTechnologies.map((front, index) => (
+                <li key={index} className="q-m-co-item">
+                  <strong>{front.name}</strong> <span>{front.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="quest-contain-w">
+            <h2 className="q-c-w-m">Data Visualization.</h2>
+            <ul className="q-m-co-list">
+              {Json.tech.technologiesUsed.categories.dataVisualization.map((group, index) => (
+                <li key={index} className="q-m-co-item">
+                  <strong>{group.name}</strong> <span>{group.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="quest-contain-w">
+            <h2 className="q-c-w-m">State Management Utilites.</h2>
+            <ul className="q-m-co-list">
+              {Json.tech.technologiesUsed.categories.stateManagementUtilities.map((group, index) => (
+                <li key={index} className="q-m-co-item">
+                  <strong>{group.name}</strong> <span>{group.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="quest-contain-w">
+            <h2 className="q-c-w-m">User Interface Enhancements.</h2>
+            <ul className="q-m-co-list">
+              {Json.tech.technologiesUsed.categories.userInterfaceEnhancements.map((group, index) => (
+                <li key={index} className="q-m-co-item">
+                  <strong>{group.name}</strong> <span>{group.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="quest-contain-w">
+            <h2 className="q-c-w-m">Data Visualization</h2>
+            <ul className="q-m-co-list">
+              {Json.tech.technologiesUsed.whyTheseTechnologies.map((group, index) => (
+                <li key={index} className="q-m-co-item">
+                  <strong>{group.reason}</strong> <span>{group.description}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="lpu-qus-fds">
+            <h2 className="heading-lpu">{Json.tech.mission.title}</h2>
+            <p className="text-lpu">{Json.tech.mission.description}</p>
+          </div>
+        </div>
       </section>
       <section ref={sections.team} id="team">
-        <h2>Who We Are</h2>
-        <p>We are a team of passionate developers...</p>
+        team section
       </section>
       <section ref={sections.support} id="support">
         <h2>Get Support</h2>
@@ -207,6 +290,8 @@ const About = () => {
         <p>Contact us for more information!</p>
       </section>
     </div>
+    </div>
+
   );
 };
 
