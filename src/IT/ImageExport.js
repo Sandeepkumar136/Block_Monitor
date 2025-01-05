@@ -4,6 +4,8 @@ const images = {
     search_config: require('../IT/Assets/rb_2148817994.png'),
     about: require('../IT/Assets/rb_2150189560.png'),
     what_is_blockmonitor: require('../IT/Assets/rb_2148921809.png'),
-    features: require('../IT/Assets/rb_5986.png')
+    features: require('../IT/Assets/rb_5986.png'),
+    coin: require('../IT/Assets/rb_82643.png'),
+    Intregration: require('../IT/Assets/rb_7874.png'),
 }
 export default images;

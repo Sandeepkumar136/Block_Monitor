@@ -1,0 +1,67 @@
+{
+    "coinGeckoAPI": {
+      "section": "CoinGecko API Integration: Endpoints and Data",
+      "description": "The CoinGecko API is integrated into BlockMonitor to provide real-time cryptocurrency data. Below is an explanation of the key API endpoints used in the integration and the data they provide.",
+      "apiEndpoints": [
+        {
+          "title": "Get Cryptocurrency Prices (Single Coin)",
+          "endpoint": "/simple/price",
+          "description": "Fetches the current price of a specific cryptocurrency (or multiple cryptocurrencies) in real-time.",
+          "apiLink": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd",
+          "example": "Retrieves the prices of Bitcoin and Ethereum in USD."
+        },
+        {
+          "title": "Get Cryptocurrency Market Data",
+          "endpoint": "/coins/markets",
+          "description": "Provides market data for a list of cryptocurrencies, including price, market cap, volume, and more.",
+          "apiLink": "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=bitcoin,ethereum",
+          "example": "Retrieves the market data for Bitcoin and Ethereum in USD, including price, market cap, and volume."
+        },
+        {
+          "title": "Get Coin Information (Details about a Specific Coin)",
+          "endpoint": "/coins/{id}",
+          "description": "Retrieves detailed information about a specific cryptocurrency, including its full name, description, market data, and historical data.",
+          "apiLink": "https://api.coingecko.com/api/v3/coins/bitcoin",
+          "example": "Retrieves detailed information about Bitcoin, such as its description, market cap, supply, and more."
+        },
+        {
+          "title": "Get Cryptocurrency History (Price Chart Data)",
+          "endpoint": "/coins/{id}/market_chart",
+          "description": "Provides historical market data (price, market cap, volume) for a specific cryptocurrency over a given period.",
+          "apiLink": "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30",
+          "example": "Retrieves the Bitcoin price chart data for the last 30 days in USD."
+        },
+        {
+          "title": "Get Global Market Data",
+          "endpoint": "/global",
+          "description": "Provides global cryptocurrency market data, including total market cap, 24-hour trading volume, and the number of coins tracked.",
+          "apiLink": "https://api.coingecko.com/api/v3/global",
+          "example": "Retrieves global market data like total market capitalization and total 24-hour trading volume for all cryptocurrencies."
+        },
+        {
+          "title": "Get Market Data from Exchanges",
+          "endpoint": "/exchanges",
+          "description": "Provides information about cryptocurrency exchanges, including the top exchanges and the market pairs they offer.",
+          "apiLink": "https://api.coingecko.com/api/v3/exchanges",
+          "example": "Retrieves a list of all exchanges and their market pairs."
+        },
+        {
+          "title": "Get Trending Cryptocurrencies",
+          "endpoint": "/search/trending",
+          "description": "Retrieves a list of the most trending cryptocurrencies based on user searches and activities.",
+          "apiLink": "https://api.coingecko.com/api/v3/search/trending",
+          "example": "Retrieves the currently trending cryptocurrencies, helping users discover which coins are gaining the most attention."
+        }
+      ],
+      "integrationHowItWorks": [
+        {"description": "Whenever users check a coin’s price, BlockMonitor makes an API request to the /simple/price or /coins/markets endpoints to fetch the latest price data."},
+        {"description": "The /coins/markets endpoint provides real-time market data, which is displayed in the app to show details like market cap, volume, and supply."},
+        {"description": "For users who want to track price trends, BlockMonitor sends requests to the /coins/{id}/market_chart endpoint to retrieve historical price data for analysis."},
+        {"description": "The /coins/{id} endpoint provides users with detailed information about specific cryptocurrencies, including their market data and metadata."},
+        {"description": "By utilizing the /global endpoint, BlockMonitor can display global market data, such as the total market capitalization of all cryptocurrencies, to provide a broader view of the market."},
+        {"description": "BlockMonitor can also utilize the /search/trending endpoint to display trending cryptocurrencies, keeping users updated on popular and emerging coins."}
+      
+      ]
+    }
+  }
+  
